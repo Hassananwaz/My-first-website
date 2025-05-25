@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Program1 HTML</title>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<style>
+		body {
+		  margin: 0;
+		  font-family: Arial, sans-serif;
+		  display: flex;
+		  background-color:ghostwhite;
+		}
+		
+		.sidebar {
+		  background-color: hsl(204, 30%, 16% );
+		  color: white;
+		  width: 60px;
+		  transition: width 0.3s;
+		  overflow: hidden;
+		  position: fixed;
+		  height: 100vh;
+		  z-index: 1000;
+		  border-right: 2px solid black;
+		}
+		
+		.sidebar:hover {
+		  width: auto;
+		}
+		
+		.sidebar a {
+		  display: flex;
+		  align-items: center;
+		  padding: 15px;
+		  color: white;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  transition: background 0.2s;
+		}
+		
+		.sidebar a:hover {
+		  background-color: lightgrey;
+		}
+		
+		.sidebar .icon {
+		  font-size: 20px;
+		  margin-right: 10px;
+		  width: 24px;
+		  text-align: center;
+		}
+		
+		.sidebar .label {
+		  display: inline-block;
+		  opacity: 0;
+		  transition: opacity 0.2s ease;
+		}
+		
+		.sidebar:hover .label {
+		  opacity: 1;
+		}
+		.main-content {
+		  margin: 0px;
+		  padding: 0px;
+		  transition: margin-left 0.3s ease;
+		  flex-grow: 1;
+		}
+		
+		.sidebar:hover ~ .main-content {
+		  margin-left: 160px;
+		}
+		header {
+		  display: flex;
+		  align-items: center;
+		  padding:40px;
+		  border-bottom: 2px solid black;
+		  background-color:white;
+		  transition: margin-left 0.3s ease;
+		}
+		header h1{
+			padding-right: 400px;
+			padding-left: 30px;
+			margin: 0;
+			color: darkblue;
+		}
+
+		.header-right {
+		  display: flex;
+		  align-items: center;
+		  gap: 10px;
+		  color: black;
+		  padding-right: 10px;
+		}
+		
+		fa-bell icon {
+		  font-size: 20px;
+		  cursor: pointer;
+		}
+		
+		.student-name {
+		  font-weight: bold;
+		}
+		
+		.student-photo {
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid white;
+			height: 30px;
+			width: 30px;
+		}
+		.box-container{
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 10px;
+			padding: 10px;
+			margin-left: 80px;
+			background-color:transparent;
+				}
+			.course-box {
+		  border: 1px solid #000000;
+		  overflow: hidden;
+		  background: white;
+		  box-shadow: 8px 8px rgba(0,0,0,0.3);
+		  width: 550px;
+		  height: 300px;
+		  margin: 20px auto;
+		}
+		.course-box:hover{
+			transform: scale(1.05);
+		}
+		.course-header {
+		  background-color: #5867dd;
+		  color: #fff;
+		  padding: 16px;
+		}
+		
+		.course-header h2 {
+		  margin: 0;
+		  font-size: 22px;
+		}
+		
+		.course-header p, .credit {
+		  margin: 4px 0;
+		  font-size: 14px;
+		}
+		
+		.course-body {
+		  display: flex;
+		  justify-content: space-between;
+		  padding: 16px;
+		  position: relative;
+		  align-items: center;
+		}
+		
+		.teacher-info {
+		  display: flex;
+		  align-items: center;
+		  color: black;
+		}
+		
+		.teacher-info img {
+		  width: 70px;
+		  height: 70px;
+		  border-radius: 10px;
+		  margin-right: 15px;
+		}
+		
+		.teacher-details h4 {
+		  margin: 0;
+		  font-size: 16px;
+		  font-weight: 600;
+		}
+		
+		.teacher-details p {
+		  margin: 2px 0;
+		  font-size: 13px;
+		  color: black;
+		}
+		
+		.badge {
+		  position: absolute;
+		  right: 20px;
+		  top: 20px;
+		  padding: 6px 12px;
+		  border-radius: 20px;
+		  background-color: #eaf1ff;
+		  color: #1f4da0;
+		  font-weight: bold;
+		  border: 1px solid #1f4da0;
+		}
+		
+		.course-actions {
+		  display: flex;
+		  justify-content: space-around;
+		  border:none;
+		  padding: 10px;
+		  background-color: transparent;
+
+		}
+		
+		.action {
+		  text-align: center;
+		  font-size: 13px;
+		  color: #333;
+		}
+		button:hover{
+				cursor: pointer;
+		}
+		.action i {
+		  font-size: 20px;
+		  margin-bottom: 5px;
+		  display: block;
+		}
+		.chat-btn {
+		  position: fixed;
+		  bottom: 20px;
+		  right: 20px;
+		  background-color: #3498db;
+		  color: white;
+		  border: none;
+		  padding: 12px 16px;
+		  border-radius: 30px;
+		  font-size: 14px;
+		  cursor: pointer;
+		  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		  z-index: 1000;
+		  transition: background-color 0.3s;
+		}
+		
+		.chat-btn:hover {
+		  background-color: #2980b9;
+		}
+	</style>
+</head>
+<body>
+<div class="sidebar" id="sidebar">
+  <a href="#"><b class="fa fa-home icon"></b><span class="label">Home</span></a>
+  <a href="#"><b class="fa fa-calendar icon"></b><span class="label">To Do Calendar</span></a>
+  <a href="#"><b class="fa fa-book icon"></b><span class="label">Grade Book</span></a>
+  <a href="#"><b class="fa fa-credit-card icon"></b><span class="label">Account Book</span></a>
+  <a href="#"><b class="fa fa-line-chart icon"></b><span class="label">Progress</span></a>
+  <a href="#"><b class="fa fa-calendar-check icon"></b><span class="label">Lecture Schedule</span></a>
+  <a href="#"><b class="fa fa-envelope icon"></b><span class="label">Mail</span></a>
+  <a href="#"><b class="fa fa-sticky-note icon"></b><span class="label">Notes</span></a>
+  <a href="#"><b class="fa fa-cogs icon"></b><span class="label">My Study Scheme</span></a>
+  <a href="#"><b class="fa fa-th-list icon"></b><span class="label">My Studied Courses</span></a>
+  <a href="#"><b class="fa fa-user icon"></b><span class="label">Student Services</span></a>
+  <a href="#"><b class="fa fa-check-square icon"></b><span class="label">Course Selection</span></a>
+  <a href="#"><b class="fa fa-phone icon"></b><span class="label">Contact Us</span></a>
+</div>
+<div class="main-content" id="mainContent">
+<header class="header">
+	<img src="logo-New.png" style="height: 40px;top: -7px;padding-left: 60px;position: relative;">
+  <h1 style="float: left;">Learning Management System</h1>
+  <div class="header-right">
+    <b class="fa fa-bell icon"></b>
+    <span class="student-name">Hassan Nawaz<br/>BC240433961</span>
+    <img src="download.jpg" alt="Student" class="student-photo" />
+  </div>
+</header>
+
+
+	<div class="box-container">
+<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+  <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>
+			<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+   <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>
+		<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+   <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>
+		<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+   <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>
+		<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+   <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>
+		<!-- Course Box -->
+<div class="course-box">
+  <!-- Header -->
+  <div class="course-header">
+    <h2>Subject Name</h2>
+    <p>Department</p>
+    <span class="credit">Credit Hour(s)</span>
+  </div>
+
+  <!-- Teacher Info Section -->
+  <div class="course-body">
+    <div class="teacher-info">
+      <img src="download.jpg" alt="Teacher">
+      <div class="teacher-details">
+        <h4>Teacher's Name</h4>
+        <p>Qualifications</p>
+        <p>Institute</p>
+      </div>
+    </div>
+    <div class="badge">0</div>
+  </div><hr>
+
+  <!-- Actions -->
+    <div class="course-actions">
+    <button class="action">
+      <i class="fa fa-book"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-comments"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-question-circle"></i>
+    </button>
+    <button class="action">
+      <i class="fa fa-bullhorn"></i>
+    </button>
+  </div>
+</div>   
+  <button class="chat-btn">Need Help?</button>
+</div>
+
+</body>
+</html>
